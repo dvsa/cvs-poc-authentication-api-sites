@@ -1,0 +1,28 @@
+{
+  "name": "authentication-api-sites",
+  "version": "1.0.0",
+  "description": "A simple API to use in a PoC for an authentication solution",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run transpile && npm run copy-sls",
+    "transpile": "./node_modules/.bin/babel src -d build",
+    "clean": "rm -rf build",
+    "copy-sls": "./node_modules/.bin/copyfiles -f serverless/*.yml build",
+    "offline": "npm run build && npm run copy-sls && cd ./build && sls offline start",
+    "deploy": "npm run build && cd ./build && sls deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.cvs.dvsacloud.uk/cvs/spikes/authentication-api-sites.git"
+  },
+  "author": "Simon Coope",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.1",
+    "copyfiles": "^2.0.0",
+    "serverless": "^1.26.1",
+    "serverless-offline": "^3.20.3"
+  }
+}
